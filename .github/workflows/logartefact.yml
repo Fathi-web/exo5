@@ -1,27 +1,14 @@
-name: Log
-
+name: log artefact
 on: [push]
-
 jobs:
-  build_and_test:
+  Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: npm install, build, and test
-        run: |
-          npm install
-          npm run build --if-present
-          npm test
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist-without-markdown
-          path: |
-            dist
-            !dist/**/*.md
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v3
-        with:
-          name: log
-          path: ../../log.txt
+      - uses: actions/checkout@v2
+      - run: pytest test_lib.py
+      - name: 'Upload Artifact'
+	uses: actions/upload-artifact@v3
+   	 with:
+            name: log
+            path: logs.txt
+            
