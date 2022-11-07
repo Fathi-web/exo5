@@ -7,6 +7,21 @@ jobs:
       - uses: actions/checkout@v2
       - run: pytest test_lib.py
       - run: echo "ca marche ?"
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Compile
+        run: npm run build
+
+      - name: npm test
+        run: npm test
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Format
+        run: npm run format-check
+
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v3
           with:
