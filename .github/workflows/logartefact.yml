@@ -6,6 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: pytest test_lib.py
+      - run: echo "ca marche ?"
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v3
           with:
